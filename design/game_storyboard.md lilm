@@ -1,0 +1,50 @@
+LilMini and the Crystal Sea Caves: Game Storyboard
+Theme and Storyline
+
+Theme: An underwater-themed adventure in a network of glowing crystal caves beside the sea.
+
+Storyline: LilMini is a small but very brave explorer who lives in a village on the shore. For generations, the village has been lit by the Heart Crystal, a glowing gem hidden deep inside the sea caves. One stormy night, the Abyssal Kraken rose from the deep, seized the Heart Crystal, and dragged it into its lair. The village has gone dark, and the tides are turning wild. LilMini enters the caves alone to take it back. The caves are full of danger, including moray eels in the crystal walls, glowing anglerfish, and drifting jellyfish guards. To stand a chance against the Kraken, LilMini must first gather six legendary items scattered through the caves: a lantern to see in the dark, a trident to fight, a shield to block its tentacles, armor to survive its crushing grip, a pearl to calm the tides, and a net to tangle its arms. If LilMini reaches the Kraken's lair with all six items, the Kraken is defeated and the Heart Crystal returns home. If LilMini enters the lair too early, the Kraken wins, and the village stays in darkness.
+
+Rooms (8)
+Tide Pool Entrance (start room, no item)
+Crystal Hall (the central hub of the caves)
+Sapphire Grotto
+Emerald Reef Gallery
+Amethyst Cavern
+Jellyfish Gardens
+Quartz Shipwreck
+Kraken's Abyss (villain's lair, no item)
+Items (6)
+Item	Room	Why LilMini needs it
+Moonstone Lantern	Crystal Hall	Lights the way through the dark caves
+Tidal Trident	Sapphire Grotto	A weapon to strike the Kraken
+Coral Shield	Emerald Reef Gallery	Blocks the Kraken's tentacles
+Pearl of Tides	Amethyst Cavern	Calms the wild tides in the lair
+Sea-Glass Armor	Jellyfish Gardens	Protects LilMini from the Kraken's crushing grip
+Kelp Net	Quartz Shipwreck	Tangles the Kraken's arms
+Villain
+
+The Abyssal Kraken. It lives in the Kraken's Abyss and has stolen the Heart Crystal. It guards the lair and can only be defeated by a player who has collected all six items.
+
+Map Summary
+
+The Crystal Hall connects the rest of the caves. The Kraken's Abyss is a dead-end room reached only through Jellyfish Gardens, so it never blocks access to any item. The full map is in game_map.drawio.
+
+Tide Pool Entrance: North to Crystal Hall
+Crystal Hall: South to Tide Pool Entrance, North to Sapphire Grotto, West to Amethyst Cavern, East to Jellyfish Gardens
+Sapphire Grotto: South to Crystal Hall, East to Emerald Reef Gallery
+Emerald Reef Gallery: West to Sapphire Grotto
+Amethyst Cavern: East to Crystal Hall
+Jellyfish Gardens: West to Crystal Hall, South to Quartz Shipwreck, East to Kraken's Abyss
+Quartz Shipwreck: North to Jellyfish Gardens
+Kraken's Abyss: West to Jellyfish Gardens
+How to Win
+Start at the Tide Pool Entrance.
+Move through the rooms using the commands go North, go South, go East, and go West.
+Use get [item name] to collect the item in each room.
+Collect all six items.
+Enter the Kraken's Abyss after collecting every item to win.
+
+Lose condition: Entering the Kraken's Abyss with fewer than six items ends the game.
+
+One possible winning path: Tide Pool Entrance, North to Crystal Hall (Lantern), North to Sapphire Grotto (Trident), East to Emerald Reef Gallery (Shield), West, South to Crystal Hall, West to Amethyst Cavern (Pearl), East to Crystal Hall, East to Jellyfish Gardens (Armor), South to Quartz Shipwreck (Net), North to Jellyfish Gardens, East to Kraken's Abyss for the final battle.
