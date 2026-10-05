@@ -7,19 +7,105 @@
 # Write pseudocode, not Python code. Use clear indentation and course-appropriate
 # keywords such as INPUT, OUTPUT, IF, ELSE, WHILE, SET, or similar terms.
 
-# TODO 1: Identify the information the movement process needs.
-# Consider the player's current room and movement command.
+// MOVE PSEUDOCODE: LilMini and the Crystal Sea Caves
+// Handles moving between rooms with go North / South / East / West.
 
-# TODO 2: Prompt for and receive the player's movement command.
+// ---------- SETUP ----------
 
-# TODO 3: Validate whether the requested movement is possible from the
-# current room. Show the decision clearly.
+// Each room lists the directions that lead out of it and the room they lead to.
+rooms = {
+    "Tide Pool Entrance": { "North": "Crystal Hall" },
+    "Crystal Hall":       { "South": "Tide Pool Entrance", "North": "Sapphire Grotto",
+                            "West": "Amethyst Cavern",     "East": "Jellyfish Gardens" },
+    "Sapphire Grotto":    { "South": "Crystal Hall", "East": "Emerald Reef Gallery" },
+    "Emerald Reef Gallery": { "West": "Sapphire Grotto" },
+    "Amethyst Cavern":    { "East": "Crystal Hall" },
+    "Jellyfish Gardens":  { "West": "Crystal Hall", "South": "Quartz Shipwreck",
+                            "East": "Kraken's Abyss" },
+    "Quartz Shipwreck":   { "North": "Jellyfish Gardens" },
+    "Kraken's Abyss":     { "West": "Jellyfish Gardens" }
+}
 
-# TODO 4: Describe what happens when the movement command is valid.
-# Include the room update and player output.
+valid_directions = ["North", "South", "East", "West"]
+villain_room = "Kraken's Abyss"
+total_items = 6
 
-# TODO 5: Describe what happens when the movement command is invalid.
-# Include the output the player should receive.
+SET current_room = "Tide Pool Entrance"
+SET inventory = empty list
+SET game_over = false
 
-# TODO 6: Show how movement fits into repeated gameplay.
-# The final game continues accepting commands until a required ending occurs.
+DISPLAY "Welcome to the Crystal Sea Caves, LilMini!"
+DISPLAY "The Abyssal Kraken has stolen the Heart Crystal. Collect all 6 items, then face it."
+DISPLAY "Commands: go North, go South, go East, go West, get [item name], exit"
+
+// ---------- MAIN GAME LOOP ----------
+// The loop repeats until the player wins, loses, or exits.
+
+WHILE game_over is false
+
+    DISPLAY "You are in the " + current_room
+    DISPLAY "Inventory: " + inventory
+
+    IF the current room has an item that is not yet in inventory THEN
+        DISPLAY "You see: " + the item in the current room
+    END IF
+
+    // INPUT: prompt the player
+    DISPLAY "What will LilMini do? "
+    GET command from player
+    SET command = remove extra spaces from command and convert to lowercase
+
+    // VALIDATE: figure out which kind of command was typed
+    IF command is "exit" THEN
+        DISPLAY "LilMini swims home. Thanks for playing!"
+        SET game_over = true
+
+    ELSE IF command starts with "go " THEN
+
+        SET direction = the text after "go " with the first letter capitalized
+
+        // VALID vs. INVALID direction word
+        IF direction is in valid_directions THEN
+
+            // The direction is real, but is there an exit that way from this room?
+            IF direction is a key in rooms[current_room] THEN
+                // VALID MOVE
+                SET current_room = rooms[current_room][direction]
+                DISPLAY "LilMini swims " + direction + " into the " + current_room + "."
+
+                // Check for the villain after every move
+                IF current_room is villain_room THEN
+                    IF length of inventory equals total_items THEN
+                        DISPLAY "LilMini raises the trident, braces the shield, and springs the net!"
+                        DISPLAY "The Abyssal Kraken is defeated and the Heart Crystal glows again!"
+                        DISPLAY "YOU WIN!"
+                    ELSE
+                        DISPLAY "The Abyssal Kraken rises from the dark. LilMini is not ready..."
+                        DISPLAY "The Kraken wins. The village stays dark. GAME OVER."
+                    END IF
+                    SET game_over = true
+                END IF
+
+            ELSE
+                // Real direction, but a crystal wall or rock blocks the way
+                DISPLAY "A wall of crystal blocks that way. LilMini cannot go " + direction + "."
+            END IF
+
+        ELSE
+            // INVALID direction word (for example "go up" or "go banana")
+            DISPLAY "That is not a direction. Use North, South, East, or West."
+        END IF
+
+    ELSE IF command starts with "get " THEN
+        // The item logic is in get_item.pseudo
+        CALL the get item steps with the item name typed after "get "
+
+    ELSE
+        // INVALID command
+        DISPLAY "LilMini does not understand that. Try: go North, get [item], or exit."
+    END IF
+
+END WHILE
+
+DISPLAY "Game over."
+
